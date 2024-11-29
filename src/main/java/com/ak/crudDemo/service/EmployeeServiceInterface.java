@@ -3,7 +3,6 @@ package com.ak.crudDemo.service;
 import com.ak.crudDemo.entity.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeServiceInterface {
 
@@ -11,6 +10,9 @@ public interface EmployeeServiceInterface {
 
     public Employee saveEmployee(Employee employee);
 
-    public Optional<Employee> getEmployeeById(Long id);
+    public Employee getEmployeeById(Long id);
 
+    public void deleteEpById(Long id);
+
+    public Employee updateEmpData(Employee employee);
 }

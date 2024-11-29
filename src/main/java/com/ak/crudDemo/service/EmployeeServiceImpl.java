@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeServiceInterface {
@@ -28,8 +27,17 @@ public class EmployeeServiceImpl implements EmployeeServiceInterface {
     }
 
     @Override
-    public Optional<Employee> getEmployeeById(Long id) {
-        Optional<Employee> employeeList = employeeRepo.findById(id);
-        return employeeList;
+    public Employee getEmployeeById(Long id) {
+       return employeeRepo.findById(id).get();  //get() because of Optional
+    }
+
+    @Override
+    public void deleteEpById(Long id) {
+        employeeRepo.deleteById(id);
+    }
+
+    @Override
+    public Employee updateEmpData(Employee employee) {
+        return employeeRepo.saveAndFlush(employee);
     }
 }

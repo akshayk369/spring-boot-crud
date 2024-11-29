@@ -31,11 +31,22 @@ public class EmployeeController {
     }
 
 
-   /* @GetMapping(value = "/getEmpById/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
+   @GetMapping(value = "/getEmpById/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id){
+        Employee employee = employeeService.getEmployeeById(id);
         return new ResponseEntity<Employee>(employee, HttpStatus.OK);
-    }*/
+    }
 
+    @DeleteMapping(value = "/deleteEmp/{id}")
+    public ResponseEntity<Void> deleteEmpById(@PathVariable("id") Long id){
+        employeeService.deleteEpById(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
+        Employee savedEmployee = employeeService.updateEmpData(employee);
+        return new ResponseEntity<Employee>(savedEmployee, HttpStatus.CREATED);
+    }
 
 }
